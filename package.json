@@ -1,0 +1,21 @@
+{
+  "name": "matpriser.nu",
+  "version": "1.0.0",
+  "description": "App för att hanter matpriser",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivo Lejon",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.6.0",
+    "express-error-handler": "^1.0.1",
+    "express-handlebars": "^2.0.1",
+    "handlebars": "^4.0.3",
+    "md5": "^2.0.0",
+    "morgan": "^1.6.1",
+    "path": "^0.12.7",
+    "request": "^2.64.0"
+  }
+}
