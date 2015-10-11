@@ -1,11 +1,12 @@
 var express = require('express');
-var app  = express();
 var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
 var md5 = require('md5');
+var favicon = require('serve-favicon');
 
-
+var app  = express();
+app.use(favicon(__dirname + '/public/image/favicon.png'));
 
 app.use(compression());
 app.use(morgan('tiny'));
