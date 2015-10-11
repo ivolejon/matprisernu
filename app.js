@@ -3,6 +3,7 @@ var app  = express();
 var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
+var md5 = require('md5');
 
 
 
@@ -16,7 +17,7 @@ var handlebars = require('express-handlebars')
     .create({defaultLayout: 'main'
 });
 
-app.engine('handlebars', handlebars.engine);
+app.engine('handlebars', handlebars.engine	);
 app.set('view engine', 'handlebars');
 
 
@@ -35,5 +36,5 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000);
-console.log('ivo');
+app.listen(process.env.PORT || 3000);
+console.log('Matpriser körs');
