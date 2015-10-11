@@ -4,13 +4,14 @@
   "description": "App för att hantera matpriser",
   "main": "app.js",
   "private": true,
- "scripts": {
+  "scripts": {
     "start": "node app.js"
   },
   "author": "Ivo Lejon",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.6.0",
+    "express": "^4.13.3",
     "express-error-handler": "^1.0.1",
     "express-handlebars": "^2.0.1",
     "handlebars": "^4.0.3",
