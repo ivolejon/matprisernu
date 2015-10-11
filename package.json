@@ -5,7 +5,7 @@
   "main": "app.js",
   "private": true,
  "scripts": {
-    "start": "node app.js"
+    "start": "node ./app.js"
   },
   "author": "Ivo Lejon",
   "license": "ISC",
