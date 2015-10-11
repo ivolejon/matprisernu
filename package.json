@@ -4,9 +4,6 @@
   "description": "App för att hantera matpriser",
   "main": "app.js",
   "private": true,
- "scripts": {
-    "start": "node ./app.js"
-  },
   "author": "Ivo Lejon",
   "license": "ISC",
   "dependencies": {
