@@ -6,7 +6,7 @@ var md5 = require('md5');
 var favicon = require('serve-favicon');
 
 var app  = express();
-app.use(favicon(__dirname + '/public/image/favicon.png'));
+app.use(favicon(__dirname + '/public/image/favicon.ico'));
 
 app.use(compression());
 app.use(morgan('tiny'));
