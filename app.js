@@ -4,6 +4,8 @@ var compression = require('compression');
 var path = require('path');
 var md5 = require('md5');
 var favicon = require('serve-favicon');
+var bodyParser = require('body-parser');
+
 
 var app  = express();
 app.use(favicon(__dirname + '/public/image/favicon.ico'));
@@ -12,7 +14,8 @@ app.use(compression());
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 var handlebars = require('express-handlebars')
     .create({defaultLayout: 'main'
