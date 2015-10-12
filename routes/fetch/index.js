@@ -18,7 +18,7 @@ request.get(cloudScrapeRequest, function (error, response, json) {
 	                var dataPackage = json;
 	            }
 	            var knex = require('knex')({client: 'pg',connection: connections.DBconnection});
-	            //do stuff
+	            res.end(dataPackage);
         }
         else{
         	console.log(error);
