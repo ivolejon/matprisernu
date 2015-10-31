@@ -2,13 +2,13 @@ var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
-var md5 = require('md5');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 
 var app  = express();
 app.use(favicon(__dirname + '/public/image/favicon.ico'));
+
 
 app.use(compression());
 app.use(morgan('tiny'));
@@ -27,10 +27,17 @@ app.set('view engine', 'handlebars');
 
 var home = require('./routes/home');
 var fetch = require('./routes/fetch');
+var about = require('./routes/about');
+var jamforelsen = require('./routes/jamforelsen');
+var nyheter = require('./routes/nyheter');
 
 
 app.use(fetch);
 app.use(home);
+app.use(about);
+app.use(jamforelsen);
+app.use(nyheter);
+
 
 
 
@@ -41,5 +48,5 @@ app.use(function(err, req, res, next) {
 
 
 app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  console.log("Matpriser.nu server körs på port %d i %s läge", this.address().port, app.settings.env);
 });

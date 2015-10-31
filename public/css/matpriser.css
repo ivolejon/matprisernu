@@ -6,13 +6,23 @@
 body {
 	font-family: 'Noto Serif', serif;
 }
-
+a {
+	color:#159AC5;
+	text-decoration: underline;
+}
 
 h1,h2, h3, h4, h5 h6 {
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
+	color: #012f50;
+}
+h2, h3, h4 {
+	color: #f8931f;
 }
 
+.botten-40 {
+	margin-bottom:40px;
+}
 /* ---------------------------Meny---------------------------*/
 #navbar {
     min-height: 75px;
@@ -34,12 +44,17 @@ h1,h2, h3, h4, h5 h6 {
     -moz-transition: color 0.1s ease-in 0s;
     transition: color 0.1s ease-in 0s;
 	font-family: 'Lato', sans-serif;
+	text-decoration: none;
 	
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-    background-color:rgba(0,0,0,0.1);
+    background-color:#fce200;
     color: #012f50;
 	border-radius:5px;
+}
+.navbar-toggle {
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 /* ---------------------------/Meny---------------------------*/
 
@@ -50,14 +65,65 @@ h1,h2, h3, h4, h5 h6 {
 .form-inline .form-control.varusok {
 	width:300px;
 }
+.extrab {
+	margin-bottom: 40px;
+}
 @media (max-width: 767px) {
   .form-inline .form-control.varusok {
 	width:100%;
 }
 }
 /* ---------------------------/SÃ¶k---------------------------*/
+/* ---------------------------Call---------------------------*/
+.call {
+	background-color:rgba(21, 154, 197,0.2);
+	margin: 30px 0 60px;
+    padding: 36px 0 50px;
+	
+}
+.call h2 {
+	color:#F8931F;
+	
+}
+.call p {
+	color:#012F50;
+	
+}
+.button, button, input[type="submit"], input[type="button"], input[type="reset"] {
+    background: #FCE200 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #012F50;
+    display: inline-block;
+    font-family: "Lato";
+    font-weight: 700;
+    padding: 6px 20px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out 0s;
+}
+.call .form-inline {
+    margin: 10px 0;
+}
+.call .epost {
+	
+}
+/* ---------------------------/Call---------------------------*/
 
 /* ---------------------------Lista---------------------------*/
+@-moz-document url-prefix() {
+  fieldset { 
+	display: table-cell; 
+}
+}
+.toplegend h4 {
+	margin:40px 0 20px;
+	color: #012f50;
+}
+.toplegend p {
+	margin:20px 0 40px;
+	font-size:16px;
+}
+
 .table-hover > tbody > tr:hover {
   background-color: rgba(252,226,0,0.1);
 }
@@ -82,6 +148,7 @@ td:first-child {
 	text-align:left;
 	border-left:none;
 	font-weight:bold;
+	font-size: 80%;
 }
 td:last-child {
 	opacity:0.6;
@@ -100,7 +167,7 @@ th h4{
 	margin:0;
 }
 .kasserad th {
-	
+	 vertical-align: middle;
 }
 .kasserad th.legend {
 	text-align:center;
@@ -108,7 +175,7 @@ th h4{
 }
 .totalpris {
 	
-	background: transparent url("../image/icon_kasse.png") no-repeat scroll 50% top / contain ;
+	background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
@@ -116,6 +183,7 @@ th h4{
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
 	font-size:18px;
+	text-align: center;
 }
 
 .totaltext {
@@ -130,7 +198,94 @@ th h4{
 	font-weight: 500;
 	font-size:90%;
 }
-	
+.totalpris.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 82% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background-size: 50px, contain;
+}
+@media (max-width: 991px) {
+  .totalpris {
+    background: none;
+    font-size: 14px;
+    line-height: normal;
+    margin: 0;
+    min-width: 0;
+    padding-top: 0;
+}
+.topkassar .col-xs-2 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+ .topkassar .totalpris {
+    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    font-size: 14px;
+    line-height: 60px;
+    margin: 5px 0;
+    min-width: 0;
+    padding-top: 20px;
+}
+.totalpris.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background-size: 40px, contain;
+}
+.kasserad th {
+	 vertical-align: middle !important;
+}
+.totaltext {
+	font-size:100%;
+}
+th img {
+	max-height:20px;
+	margin: 0 auto;
+	transform: rotate(270deg);
+	position:absolute;
+	bottom: 24px;
+	left:0px;
+}
+.storelogo th {
+	width:30px;
+	height:110px;
+	position:relative;
+}
+.storemathem img {
+	bottom: 40px;
+}
+.storematse img {
+	bottom: 32px;
+}
+.storeica img {
+	bottom: 14px;
+}
+.storepro img {
+	bottom: 24px;
+}
+}
+@media (max-width: 650px) {
+	th img {
+	left:-10px;
+}
+
+}
+@media (max-width: 490px) {
+	th img {
+	left:-17px;
+}
+.topkassar .col-xs-2 {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.topkassar .totalpris {
+    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    font-size: 14px;
+    line-height: 60px;
+    margin: 5px 0;
+    min-width: 0;
+    padding-top: 15px;
+}
+.totalpris.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 105% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background-size: 30px, contain;
+}
+}
 /* ---------------------------/Lista---------------------------*/
 
 /* ---------------------------Footer---------------------------*/
@@ -140,6 +295,7 @@ th h4{
     height: 60px;
     position: relative;
     width: 100%;
+	margin-top:40px;
 }
 .footer .text-muted {
     margin: 20px 0;
