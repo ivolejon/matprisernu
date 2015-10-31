@@ -175,7 +175,7 @@ th h4{
 }
 .totalpris {
 	
-	background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+	background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
@@ -199,7 +199,7 @@ th h4{
 	font-size:90%;
 }
 .totalpris.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 82% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("billigast.png") no-repeat scroll 82% top, url("icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 50px, contain;
 }
 @media (max-width: 991px) {
