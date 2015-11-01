@@ -216,7 +216,7 @@ th h4{
 	padding-right: 5px;
 }
  .topkassar .totalpris {
-    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -224,7 +224,7 @@ th h4{
     padding-top: 20px;
 }
 .totalpris.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("billigast.png") no-repeat scroll 90% top, url("icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 40px, contain;
 }
 .kasserad th {
@@ -274,7 +274,7 @@ th img {
 	padding-right: 2px;
 }
 .topkassar .totalpris {
-    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -282,7 +282,7 @@ th img {
     padding-top: 15px;
 }
 .totalpris.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 105% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("billigast.png") no-repeat scroll 105% top, url("icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 30px, contain;
 }
 }
