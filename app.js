@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 
 var app  = express();
-app.use(favicon(__dirname + '/public/image/favicon.ico'));
+app.use(favicon(__dirname + '/public/image/favicon.png'));
 
 
 app.use(compression());
