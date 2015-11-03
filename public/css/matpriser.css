@@ -143,6 +143,7 @@ th img {
 td {
 	text-align:center;
 	border-left:1px solid #999;
+	position:relative;
 }
 td:first-child {
 	text-align:left;
@@ -175,7 +176,7 @@ th h4{
 }
 .totalpris {
 	
-	background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
+	background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
@@ -199,8 +200,19 @@ th h4{
 	font-size:90%;
 }
 .totalpris.billigast {
-	background: url("billigast.png") no-repeat scroll 82% top, url("icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../img/billigast.png") no-repeat scroll 82% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 50px, contain;
+}
+.comment {
+	position:absolute;
+	top:-1px;
+	right: 3px;
+}
+.comment a {
+	color:#ccc;
+}
+.comment a:hover {
+	color:#159AC5;
 }
 @media (max-width: 991px) {
   .totalpris {
@@ -216,7 +228,7 @@ th h4{
 	padding-right: 5px;
 }
  .topkassar .totalpris {
-    background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -224,7 +236,7 @@ th h4{
     padding-top: 20px;
 }
 .totalpris.billigast {
-	background: url("billigast.png") no-repeat scroll 90% top, url("icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 40px, contain;
 }
 .kasserad th {
@@ -263,7 +275,9 @@ th img {
 	th img {
 	left:-10px;
 }
-
+.comment {
+	font-size:80%;
+}
 }
 @media (max-width: 490px) {
 	th img {
@@ -274,7 +288,7 @@ th img {
 	padding-right: 2px;
 }
 .topkassar .totalpris {
-    background: transparent url("icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -282,7 +296,7 @@ th img {
     padding-top: 15px;
 }
 .totalpris.billigast {
-	background: url("billigast.png") no-repeat scroll 105% top, url("icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../img/billigast.png") no-repeat scroll 105% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 30px, contain;
 }
 }
