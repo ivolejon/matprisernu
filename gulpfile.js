@@ -60,15 +60,9 @@ gulp.task('default', ['minify-css','copy-images','minify-js'], function() {
 });
 
 gulp.task('run', function() {
-	livereload.listen();
 	nodemon({
 		// the script to run the app
 		script: 'app.js',
 		ext: 'js'
-	}).on('restart', function(){
-		// when the app has restarted, run livereload.
-		gulp.src('app.js')
-			.pipe(livereload())
-			.pipe(notify('Reloading page, please wait...'));
 	});
 });

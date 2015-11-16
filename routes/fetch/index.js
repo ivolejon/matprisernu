@@ -1,35 +1,74 @@
 var express = require('express');
-var md5 = require('md5');
-var connections = require('../../lib/connections.js');
-var utils = require('../../lib/utils.js');
+var connections = require('../../lib/connections');
+var DB = require('../../lib/DB');
+var json2SQL = require('../../lib/Json2SQL');
 var request = require('request');
-
+var EventSender = require('event-sender');
+var async = require('async');
+var uuid = require('uuid');
 var app = module.exports = express();
 
-app.get('/fetch/:store', function(req, res) {
 
-	var store = connections.switchStores(req.params.store);
-	res.end(JSON.stringify(store));
-	/*var cloudScrapeRequest = connections.BuildCloudscrapeRequest('https://app.cloudscrape.com/api/executions/0799e5f6-5401-46a4-938f-8326a1ec33c7/result');
-	console.log(cloudScrapeRequest);
-	request.get(cloudScrapeRequest, function (error, response, json) {
-	        if (!error && response.statusCode == 200) {
-		    	if (typeof json === "string") {
-		                var dataPackage = JSON.parse(json);
-		            }
-		            else {
-		                var dataPackage = json;
-		            }
-		            var knex = require('knex')({client: 'pg',connection: connections.DBconnection});
-		            res.writeHead(200, {'Content-Type': 'text/html'});
-		            console.log(dataPackage);
-		            res.end(JSON.stringify(dataPackage));
-		           
-	        }
-	        else{
-	        	console.log(error);
-	        	res.end();
-	        }
-	    })*/
+app.get('/fetch2', function(req, res) {
+	// var event = new EventSender(res);
 
+	// setInterval(function() {
+	// 		event.send({
+	// 			data: 'Hello, World!'
+	// 		});
+	// 	},
+	// 	3000);
+
+});
+app.get('/fetch', function(req, res) {
+	
+//var event = new EventSender(res);
+//	event.send({data: 'Hello, World!'});
+	var batch = uuid.v1();
+	var stores = {
+		1: 'ica',
+		2: 'mathem',
+		3: 'matse',
+		4: 'coop'
+	};
+	async.forEachOfSeries(stores, function(value, key, callback) {
+
+		currentStore = value;
+
+		console.log('Hämtar från ' + currentStore);
+
+		var cloudScrapeRequest = connections.switchStores(currentStore);
+
+		request.get(cloudScrapeRequest, function(error, response, json) {
+			if (!error && response.statusCode == 200) {
+				if (typeof json === "string") {
+					var dataPackage = JSON.parse(json);
+				} else {
+					var dataPackage = json;
+				}
+				var sqlString = json2SQL.convertJsonToInsertSQL(dataPackage, currentStore,batch);
+				var DBconnection = DB.dbConnection();
+
+				DBconnection.raw(sqlString)
+					.then(function(resp) {
+						console.log('Hämtat klart från ' + currentStore)
+						DBconnection.destroy();
+						callback();
+					})
+					.catch(function(err) {
+						console.error(err);
+					});
+
+			} else {
+				console.log('no data');
+				res.end();
+			}
+		});
+
+	}, function() {
+		console.log('Hämatat från alla affärer');
+		res.render('fetch', {
+		layout: 'admin'
+	}); 
+	}); //forEachSeries
 });

@@ -1,1 +1,1 @@
-$(function(){$('[data-toggle="popover"]').popover()});
+$(function(){$('[data-toggle="popover"]').popover()}),$(document).ready(function(){$("#filter").keyup(function(){var t=$(this).val(),e=0;$("#root li").each(function(){$(this).find(".title").text().search(new RegExp(t,"i"))<0?$(this).fadeOut():($(this).show(),e++)})})});

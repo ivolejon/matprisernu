@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SSE Test</title>
+    <meta charset="utf-8" />
+    <script language="JavaScript">
+   var init = function(){
+if (!!window.EventSource) {
+  var source = new EventSource('http://localhost:3000/fetch');
+} else {
+  // Result to xhr polling :(
+}
+
+
+source.addEventListener('message', function(e) {
+  console.log(e.data);
+}, false);
+
+source.addEventListener('open', function(e) {
+  console.log('open')
+}, false);
+
+source.addEventListener('error', function(e) {
+  if (e.readyState == EventSource.CLOSED) {
+    console.log('error')
+  }
+}, false);
+}
+    </script>
+  <body onLoad="init()">
+    <div id="log">testing...</div>
+  </body>
+</html>

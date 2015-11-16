@@ -2,9 +2,10 @@
  
  */
  
-@import url(https://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Lato:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 body {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
 }
 a {
 	color:#159AC5;
@@ -104,8 +105,11 @@ h2, h3, h4 {
 .call .form-inline {
     margin: 10px 0;
 }
-.call .epost {
-	
+.call ul {
+	padding-left: 15px;
+}
+.call h4 {
+	margin-top: 25px;
 }
 /* ---------------------------/Call---------------------------*/
 
@@ -149,8 +153,17 @@ td:first-child {
 	text-align:left;
 	border-left:none;
 	font-weight:bold;
-	font-size: 80%;
+	font-size: 90%;
 }
+td:first-child a, td:first-child a:hover {
+	color:#333;
+	text-decoration:none
+}
+.varuinfo .vara {
+	max-width:200px;
+	margin:10px 0;
+}
+	
 td:last-child {
 	opacity:0.6;
 }
@@ -180,13 +193,24 @@ th h4{
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
-    padding-top: 20px;
+    padding: 20px 0 0;
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
 	font-size:18px;
 	text-align: center;
 }
-
+.totalpris2 {
+	
+	background: transparent url("../img/icon_vagn.png") no-repeat scroll center top / contain ;
+	line-height: 90px;
+    margin: 20px 0;
+    min-width: 100px;
+    padding: 0 28% 10px 0;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	font-size:18px;
+	text-align: right;
+}
 .totaltext {
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
@@ -203,10 +227,14 @@ th h4{
 	background: url("../img/billigast.png") no-repeat scroll 82% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 50px, contain;
 }
+.totalpris2.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 100% top, url("../img/icon_vagn.png") no-repeat scroll center top;
+	background-size: 50px, contain;
+}
 .comment {
 	position:absolute;
-	top:-1px;
-	right: 3px;
+	top: 1px;
+	right: 2px;
 }
 .comment a {
 	color:#ccc;
@@ -214,8 +242,16 @@ th h4{
 .comment a:hover {
 	color:#159AC5;
 }
+@media (max-width: 1199px) {
+.totalpris2 {
+    padding: 0 23% 10px 0;
+}
+.totalpris2.billigast {
+	background-size: 40px, contain;
+}
+}
 @media (max-width: 991px) {
-  .totalpris {
+  .totalpris, .totalpris2 {
     background: none;
     font-size: 14px;
     line-height: normal;
@@ -233,11 +269,25 @@ th h4{
     line-height: 60px;
     margin: 5px 0;
     min-width: 0;
-    padding-top: 20px;
+    padding: 20px 0 0;
+	text-align: center;
 }
 .totalpris.billigast {
 	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 40px, contain;
+}
+.topkassar .totalpris2 {
+    background: transparent url("../img/icon_vagn.png") no-repeat scroll center top / contain ;
+    font-size: 14px;
+    line-height: 60px;
+    margin: 5px 0;
+    min-width: 0;
+    padding: 10px 26% 10px 0;
+	text-align: right;
+}
+.totalpris2.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_vagn.png") no-repeat scroll center top;
+	background-size: 36px, contain;
 }
 .kasserad th {
 	 vertical-align: middle !important;
@@ -278,6 +328,19 @@ th img {
 .comment {
 	font-size:80%;
 }
+.topkassar .totalpris2 {
+    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    font-size: 14px;
+    line-height: 60px;
+    margin: 5px 0;
+    min-width: 0;
+    padding: 20px 0 0;
+	text-align: center;
+}
+.totalpris2.billigast {
+	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background-size: 40px, contain;
+}
 }
 @media (max-width: 490px) {
 	th img {
@@ -287,15 +350,15 @@ th img {
 	padding-left: 2px;
 	padding-right: 2px;
 }
-.topkassar .totalpris {
+.topkassar .totalpris, .topkassar .totalpris2 {
     background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
     min-width: 0;
-    padding-top: 15px;
+    padding: 15px 0 0 ;
 }
-.totalpris.billigast {
+.totalpris.billigast, .totalpris2.billigast {
 	background: url("../img/billigast.png") no-repeat scroll 105% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 30px, contain;
 }

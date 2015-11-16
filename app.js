@@ -2,12 +2,10 @@ var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
-var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 
 var app  = express();
-app.use(favicon(__dirname + '/public/image/favicon.png'));
 
 
 app.use(compression());
@@ -37,7 +35,6 @@ app.use(home);
 app.use(about);
 app.use(jamforelsen);
 app.use(nyheter);
-
 
 
 
