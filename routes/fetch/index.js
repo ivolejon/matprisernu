@@ -3,23 +3,10 @@ var connections = require('../../lib/connections');
 var DB = require('../../lib/DB');
 var json2SQL = require('../../lib/Json2SQL');
 var request = require('request');
-var EventSender = require('event-sender');
 var async = require('async');
 var uuid = require('uuid');
 var app = module.exports = express();
 
-
-app.get('/fetch2', function(req, res) {
-	// var event = new EventSender(res);
-
-	// setInterval(function() {
-	// 		event.send({
-	// 			data: 'Hello, World!'
-	// 		});
-	// 	},
-	// 	3000);
-
-});
 app.get('/fetch', function(req, res) {
 	
 //var event = new EventSender(res);
