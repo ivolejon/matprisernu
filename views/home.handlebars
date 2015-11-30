@@ -12,23 +12,23 @@
       </div>
       <div class="row topkassar">
         <div class="col-xs-2 col-xs-offset-1">
-            <div class="totalpris2 billigast">791 kr</div>
+            <div class="totalpris2 billigast">{{toFixed objects.totals.total_coop}} kr</div>
             <img class="img-responsive" src="dist/image/logo_coop.png" alt="Coop"/>
         </div>
         <div class="col-xs-2">
-            <div class="totalpris2">841 kr</div>
+            <div class="totalpris2">{{toFixed objects.totals.total_mathem}} kr</div>
             <img class="img-responsive" src="dist/image/logo_mathem.png" alt="Mathem"/>
         </div>
         <div class="col-xs-2">
-            <div class="totalpris2">829 kr</div>
+            <div class="totalpris2">{{toFixed objects.totals.total_matse}} kr</div>
             <img class="img-responsive" src="dist/image/logo_matse.png" alt="Mat.se"/>
         </div>
         <div class="col-xs-2">
-            <div class="totalpris2">885 kr</div>
+            <div class="totalpris2">{{toFixed objects.totals.total_ica}} kr</div>
             <img class="img-responsive" src="dist/image/logo_ica.png" alt="Ica"/>
         </div>
         <div class="col-xs-2">
-            <div class="totalpris2">828 kr</div>
+            <div class="totalpris2">{{toFixed objects.totals.total_pro}} kr</div>
             <img class="img-responsive" alt="PRO" src="dist/image/logo_pro.png">
         </div>
       </div>
@@ -107,16 +107,55 @@
             <thead>
             <tr class="kasserad">
                 <th class="legend"><div class="totaltext">Totalpris för matkasse <span>(frakt inkluderat)</span></div></th>
-                <th><div class="totalpris2">791 kr</div></th>
-                <th><div class="totalpris2">841 kr</div></th>
-                <th><div class="totalpris2">829 kr</div></th>
-                <th><div class="totalpris2">885 kr</div></th>
-                <th><div class="totalpris2">828 kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_coop}} kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_mathem}} kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_matse}} kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_ica}} kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_pro}} kr</div></th>
             </tr>
             </thead>
             <tbody>
             
+            {{#each objects.products}}
             <tr>
+            <td align="right" width="53">{{product_name}}</td>
+            <td align="right" width="53">{{price_coop}}</td>
+            <td align="right" width="53">{{price_mathem}}</td>
+            <td align="right" width="53">{{price_matse}}</td>
+            <td align="right" width="53">{{price_ica}}</td>
+            <td align="right" width="53">{{price_pro}}</td>
+            </tr>
+            {{/each}}
+             <tr class="totalt">
+
+                <td>Totalt</td>
+                <td align="right" width="53">{{objects.totals.total_coop}}</td>
+                <td align="right" width="59">{{objects.totals.total_mathem}}</td>
+                <td align="right" width="53">{{objects.totals.total_matse}}</td>
+                <td align="right" width="53">{{objects.totals.total_ica}}</td>
+                <td align="right" width="63">{{objects.totals.total_pro}}</td>
+              </tr>
+            
+            <tr class="frakt">
+
+                <td>Frakt</td>
+                <td align="right">49,00</td>
+                <td align="right">29,00 <div class="comment"><a tabindex="0" class="" role="button" data-toggle="popover" data-trigger="hover" data-content="Fraktpris beroende på tid (0-49kr)"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></div></td>
+                <td align="right">0,00 <div class="comment"><a tabindex="0" class="" role="button" data-toggle="popover" data-trigger="hover" data-content="Fri frakt över 500kr"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></div></td>
+                <td align="right">99,00</td>
+                <td></td>
+              </tr>
+            
+            <tr class="totalt">
+
+                <td>Totalt inkl frakt</td>
+               <td align="right">{{objects.totals.total_coop_shipping}}</td>
+                <td align="right">{{objects.totals.total_mathem_shipping}}</td>
+                <td align="right">{{objects.totals.total_matse_shipping}}</td>
+                <td align="right">{{objects.totals.total_ica_shipping}}</td>
+                <td align="right">{{objects.totals.total_pro_shipping}}</td>
+              </tr>
+            <!--<tr>
 
                 <td><a class="" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="display:block; cursor:move;" title="Klicka för mer info">Husman knäckebröd <span class="caret"></span></a>
                     <div class="collapse varuinfo" id="collapseExample">
@@ -480,7 +519,8 @@
                 <td align="right">884,84</td>
                 <td align="right">827,81</td>
               </tr>
-            
+            -->
+            </tr>
             </tbody>
         </table>
         </div>

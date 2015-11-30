@@ -16,7 +16,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 var handlebars = require('express-handlebars')
-    .create({defaultLayout: 'main'
+    .create({defaultLayout: 'main',
+    	 helpers: {
+   toFixed:function(num){
+   	return parseFloat(num).toFixed();
+   }
+    }
 });
 
 app.engine('handlebars', handlebars.engine	);
