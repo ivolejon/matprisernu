@@ -61,7 +61,7 @@ app.get('/', function(req, res) {
 			dataset.totals.total_ica_shipping = parseFloat(data[0].total_ica_shipping);
 			dataset.totals.total_pro_shipping = parseFloat(data[0].total_pro_shipping);
 
-			console.log(dataset);
+			//console.log(dataset);
 
 			res.render('home', {
 				objects: dataset
