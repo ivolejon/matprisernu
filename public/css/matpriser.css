@@ -20,16 +20,21 @@ h1,h2, h3, h4, h5 h6 {
 h2, h3, h4 {
 	color: #f8931f;
 }
-
+.botten-20 {
+	margin-bottom:20px;
+}
 .botten-40 {
 	margin-bottom:40px;
 }
 /* ---------------------------Meny---------------------------*/
 #navbar {
     min-height: 75px;
+	position: relative;	
 }
 .navbar-brand {
     padding: 15px;
+	position: relative;
+    z-index: 1000;
 }
 .navbar-brand img {
 	height:50px;
@@ -59,6 +64,16 @@ h2, h3, h4 {
 }
 /* ---------------------------/Meny---------------------------*/
 
+/* ---------------------------Helbild---------------------------*/
+.helbild {
+	position:relative;
+	top:-20px;
+}
+.helbild img {
+	margin: 0 auto;
+}
+/* ---------------------------/Helbild---------------------------*/
+
 /* ---------------------------SÃ¶k ---------------------------*/
 .form-inline {
 	margin:40px 0;
@@ -78,6 +93,8 @@ h2, h3, h4 {
 /* ---------------------------Call---------------------------*/
 .call {
 	background-color:rgba(21, 154, 197,0.2);
+	background:transparent url(../image/bg.png) top left no-repeat;
+	background-size:cover;
 	margin: 30px 0 60px;
     padding: 36px 0 50px;
 	
@@ -123,11 +140,18 @@ h2, h3, h4 {
 	margin:40px 0 20px;
 	color: #012f50;
 }
-.toplegend p {
-	margin:20px 0 40px;
-	font-size:16px;
+.toplegend {
+	padding:0px 0;
 }
-
+.toplegend p {
+	font-size:14px;
+	margin-bottom: 15px;
+}
+span.dela {
+	position: relative;
+	top:5px;
+	margin-left:15px;
+}
 .table-hover > tbody > tr:hover {
   background-color: rgba(252,226,0,0.1);
 }
@@ -187,9 +211,14 @@ th h4{
 	text-align:center;
 	vertical-align:middle;
 }
+.topkassar a {
+	text-decoration: none;
+	color:#333;
+}
+
 .totalpris {
 	
-	background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+	background: transparent url("../image/icon_kasse.png") no-repeat scroll 50% top / contain ;
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
@@ -201,7 +230,7 @@ th h4{
 }
 .totalpris2 {
 	
-	background: transparent url("../img/icon_vagn.png") no-repeat scroll center top / contain ;
+	background: transparent url("../image/icon_vagn.png") no-repeat scroll center top / contain ;
 	line-height: 90px;
     margin: 20px 0;
     min-width: 100px;
@@ -224,11 +253,11 @@ th h4{
 	font-size:90%;
 }
 .totalpris.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 82% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../image/billigast.png") no-repeat scroll 82% top, url("../image/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 50px, contain;
 }
 .totalpris2.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 100% top, url("../img/icon_vagn.png") no-repeat scroll center top;
+	background: url("../image/billigast.png") no-repeat scroll 100% top, url("../image/icon_vagn.png") no-repeat scroll center top;
 	background-size: 50px, contain;
 }
 .comment {
@@ -242,6 +271,22 @@ th h4{
 .comment a:hover {
 	color:#159AC5;
 }
+.kasstyp h4 {
+	color:#333;
+	text-align:center;
+	margin:35% auto 0px;
+}
+.kasstyp p {
+	color:#999;
+	text-align:center;
+	margin-bottom:0px;
+}
+.typikon {
+	width:30px;
+	position:relative;
+	top:-5px;
+}
+
 @media (max-width: 1199px) {
 .totalpris2 {
     padding: 0 23% 10px 0;
@@ -259,12 +304,12 @@ th h4{
     min-width: 0;
     padding-top: 0;
 }
-.topkassar .col-xs-2 {
+.topkassar .col-xs-2, .topkassar2 .col-xs-2 {
 	padding-left: 5px;
 	padding-right: 5px;
 }
- .topkassar .totalpris {
-    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+ .topkassar .totalpris, .topkassar2 .totalpris {
+    background: transparent url("../image/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -273,11 +318,11 @@ th h4{
 	text-align: center;
 }
 .totalpris.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../image/billigast.png") no-repeat scroll 90% top, url("../image/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 40px, contain;
 }
-.topkassar .totalpris2 {
-    background: transparent url("../img/icon_vagn.png") no-repeat scroll center top / contain ;
+.topkassar .totalpris2, .topkassar2 .totalpris2 {
+    background: transparent url("../image/icon_vagn.png") no-repeat scroll center top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -286,7 +331,7 @@ th h4{
 	text-align: right;
 }
 .totalpris2.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_vagn.png") no-repeat scroll center top;
+	background: url("../image/billigast.png") no-repeat scroll 90% top, url("../image/icon_vagn.png") no-repeat scroll center top;
 	background-size: 36px, contain;
 }
 .kasserad th {
@@ -321,6 +366,11 @@ th img {
 	bottom: 24px;
 }
 }
+@media (max-width: 767px) {
+  .kasstyp h4 {
+	margin:10px auto 0px;
+}
+}
 @media (max-width: 650px) {
 	th img {
 	left:-10px;
@@ -329,7 +379,7 @@ th img {
 	font-size:80%;
 }
 .topkassar .totalpris2 {
-    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("../image/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -338,7 +388,7 @@ th img {
 	text-align: center;
 }
 .totalpris2.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 90% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../image/billigast.png") no-repeat scroll 90% top, url("../image/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 40px, contain;
 }
 }
@@ -351,7 +401,7 @@ th img {
 	padding-right: 2px;
 }
 .topkassar .totalpris, .topkassar .totalpris2 {
-    background: transparent url("../img/icon_kasse.png") no-repeat scroll 50% top / contain ;
+    background: transparent url("../image/icon_kasse.png") no-repeat scroll 50% top / contain ;
     font-size: 14px;
     line-height: 60px;
     margin: 5px 0;
@@ -359,12 +409,65 @@ th img {
     padding: 15px 0 0 ;
 }
 .totalpris.billigast, .totalpris2.billigast {
-	background: url("../img/billigast.png") no-repeat scroll 105% top, url("../img/icon_kasse.png") no-repeat scroll 50% top;
+	background: url("../image/billigast.png") no-repeat scroll 105% top, url("../image/icon_kasse.png") no-repeat scroll 50% top;
 	background-size: 30px, contain;
 }
 }
+.topkassar2 .totalpris2 {
+	
+	background: transparent url() no-repeat scroll center top / contain ;
+	line-height: 40px;
+    margin: 0;
+    padding: 10px 28% 10px 0;
+	text-align: right;
+}
+.topkassar2 .totalpris2.billigast:after {
+	content:"";
+	background: url("../image/billigast.png") no-repeat scroll 0 0 ;
+	background-size: cover;
+	height:40px;
+	width:40px;
+	position:absolute;
+	top:1px;
+	right:10%;
+	z-index:-1;
+}
+.topkassar2 .kasstyp h4 {
+	margin:10px auto 0px;
+}
+@media (max-width: 991px) {
+	.topkassar2 .totalpris2.billigast:after {
+	right:0%;
+}
+}
+@media (max-width: 650px) {
+.topkassar2 .totalpris2 {
+    padding: 0;
+	text-align:center;
+	margin: 0;
+	line-height: 15px;
+}
+.topkassar2 .kasstyp h4 {
+	margin:0px auto ;
+}
+.topkassar2 .kasstyp p {
+	text-align:center;
+	margin-bottom:5px;
+}
+.topkassar2 .totalpris2.billigast:after {
+	height:30px;
+	width:30px;
+	top:-8px;
+}
+}
 /* ---------------------------/Lista---------------------------*/
-
+/* ---------------------------Undersidor---------------------------*/
+.ingress {
+	font-size: 18px;
+	font-style:italic;
+	margin-bottom:20px;
+}
+/* ---------------------------Undersidor---------------------------*/
 /* ---------------------------Footer---------------------------*/
 .footer {
     background-color: #f5f5f5;

@@ -40,7 +40,16 @@
 
   <body>
 
-      <!-- Static navbar -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+   <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -58,7 +67,7 @@
             <li><a href="/jamforelsen">Så görs jämförelsen</a></li>
             <li><a href="/nyheter">Nyheter</a></li>
           </ul>
+        <div class="social"></div>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-

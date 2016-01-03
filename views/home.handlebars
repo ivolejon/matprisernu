@@ -11,7 +11,11 @@
         </div>
       </div>
       <div class="row topkassar">
-        <div class="col-xs-2 col-xs-offset-1">
+      <div class="col-sm-2 kasstyp">
+            <h4>Standard</h4>
+            <p>(PROs matkasse)</p>
+        </div>
+        <div class="col-xs-2 col-xs-offset-1 col-sm-offset-0">
             <div class="totalpris2 billigast">{{toFixed objects.totals.total_coop_shipping}} kr</div>
             <img class="img-responsive" src="dist/image/logo_coop.png" alt="Coop"/>
         </div>
@@ -28,14 +32,17 @@
             <img class="img-responsive" src="dist/image/logo_ica.png" alt="Ica"/>
         </div>
         <div class="col-xs-2">
-            <div class="totalpris2">{{toFixed objects.totals.total_pro_shipping}} kr</div>
+            <div class="totalpris2">{{toFixed objects.totals.total_pro}} kr</div>
             <img class="img-responsive" alt="PRO" src="dist/image/logo_pro.png">
         </div>
       </div>
+         <hr class="bottom10">
+      
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1 text-center toplegend">
-            <h4>Totalpris inklusive frakt för PROs matkasse</h4>
-            <p class="text-muted">[För mer information om vad som ingår i prisjämförelsen, <a href="#innehall">klicka här</a>.]</p>
+            <p class="text-muted">För mer information om vad som ingår i prisjämförelsen, <a href="#innehall">klicka här</a>.</p>
+            <p class="text-center"><div class="fb-share-button" data-href="http://www.matpriser.nu" data-layout="button"></div> <span class="dela"><a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="http://www.matpriser.nu" data-text="Kolla på sidan Matpriser.nu!" data-hashtags="matpriser.nu">Tweet</a></span>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
         </div>
       </div>
       <hr>
@@ -111,7 +118,7 @@
                 <th><div class="totalpris2">{{toFixed objects.totals.total_mathem_shipping}} kr</div></th>
                 <th><div class="totalpris2">{{toFixed objects.totals.total_matse_shipping}} kr</div></th>
                 <th><div class="totalpris2">{{toFixed objects.totals.total_ica_shipping}} kr</div></th>
-                <th><div class="totalpris2">{{toFixed objects.totals.total_pro_shipping}} kr</div></th>
+                <th><div class="totalpris2">{{toFixed objects.totals.total_pro}} kr</div></th>
             </tr>
             </thead>
             <tbody>
@@ -153,7 +160,7 @@
                 <td align="right">{{objects.totals.total_mathem_shipping}}</td>
                 <td align="right">{{objects.totals.total_matse_shipping}}</td>
                 <td align="right">{{objects.totals.total_ica_shipping}}</td>
-                <td align="right">{{objects.totals.total_pro_shipping}}</td>
+                <td align="right">{{objects.totals.total_pro}}</td>
               </tr>
             <!--<tr>
 

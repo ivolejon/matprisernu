@@ -5,7 +5,6 @@ var json2SQL = require('./../../lib/json2Sql');
 var request = require('request');
 var async = require('async');
 var uuid = require('uuid');
-
 var app = module.exports = express();
 
 app.get('/fetch', function(req, res) {
