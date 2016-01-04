@@ -54,8 +54,6 @@ app.get('/fetch', function(req, res) {
 
 	}, function() {
 		console.log('Hämatat från alla affärer');
-		res.render('fetch', {
-		layout: 'admin'
-	}); 
+		res.redirect('/admin')
 	}); //forEachSeries
 });

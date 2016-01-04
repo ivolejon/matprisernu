@@ -33,6 +33,7 @@ var fetch = require('./routes/fetch');
 var about = require('./routes/about');
 var jamforelsen = require('./routes/jamforelsen');
 var nyheter = require('./routes/nyheter');
+var admin = require('./routes/admin');
 
 
 app.use(fetch);
@@ -40,6 +41,7 @@ app.use(home);
 app.use(about);
 app.use(jamforelsen);
 app.use(nyheter);
+app.use(admin);
 
 
 

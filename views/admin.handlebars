@@ -1,0 +1,8 @@
+<h3>Hämtningar</h3>
+<ul>
+{{#each objects}}
+	<li>hämtning {{batch}} ({{date}}) <a href="/admin/deleteBatch/{{batch}}"> Radera</a> |  <a href="/admin/clearErrors/{{batch}}">Rensa dataset</a></li>
+	{{/each}}
+</ul>
+
+<div style="margin-top:20px"><a href="/fetch" class="btn btn-default">Hämta data</a></div>
