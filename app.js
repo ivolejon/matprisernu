@@ -15,32 +15,26 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var handlebars = require('express-handlebars')
-    .create({defaultLayout: 'main',
-    	 helpers: {
-   toFixed:function(num){
-   	return parseFloat(num).toFixed();
-   }
-    }
-});
+// var handlebars = require('express-handlebars')
+//     .create({defaultLayout: 'main',
+//     	 helpers: {
+//    toFixed:function(num){
+//    	return parseFloat(num).toFixed();
+//    }
+//     }
+// });
 
-app.engine('handlebars', handlebars.engine	);
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', handlebars.engine	);
+// app.set('view engine', 'handlebars');
 
 
 var home = require('./routes/home');
 var fetch = require('./routes/fetch');
-var about = require('./routes/about');
-var jamforelsen = require('./routes/jamforelsen');
-var nyheter = require('./routes/nyheter');
 var admin = require('./routes/admin');
 
 
 app.use(fetch);
 app.use(home);
-app.use(about);
-app.use(jamforelsen);
-app.use(nyheter);
 app.use(admin);
 
 

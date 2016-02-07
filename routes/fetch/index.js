@@ -16,7 +16,11 @@ app.get('/fetch', function(req, res) {
 		1: 'ica',
 		2: 'mathem',
 		3: 'matse',
-		4: 'coop'
+		4: 'coop',
+		5: 'icaEko',
+		6: 'mathemEko',
+		7: 'matseEko',
+		8: 'coopEko'
 	};
 	async.forEachOfSeries(stores, function(value, key, callback) {
 
