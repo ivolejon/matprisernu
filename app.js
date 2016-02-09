@@ -15,17 +15,17 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-// var handlebars = require('express-handlebars')
-//     .create({defaultLayout: 'main',
-//     	 helpers: {
-//    toFixed:function(num){
-//    	return parseFloat(num).toFixed();
-//    }
-//     }
-// });
+var handlebars = require('express-handlebars')
+    .create({defaultLayout: 'main',
+    	 helpers: {
+   toFixed:function(num){
+   	return parseFloat(num).toFixed();
+   }
+    }
+});
 
-// app.engine('handlebars', handlebars.engine	);
-// app.set('view engine', 'handlebars');
+app.engine('handlebars', handlebars.engine	);
+app.set('view engine', 'handlebars');
 
 
 var home = require('./routes/home');

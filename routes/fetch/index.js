@@ -5,13 +5,15 @@ var json2SQL = require('./../../lib/json2Sql');
 var request = require('request');
 var async = require('async');
 var uuid = require('uuid');
+var moment = require('moment');
 var app = module.exports = express();
 
 app.get('/fetch', function(req, res) {
-	
-//var event = new EventSender(res);
-//	event.send({data: 'Hello, World!'});
+
+	var now = moment()
+	var timestamp = now.format('YYYY-MM-DD HH:mm:ss Z')
 	var batch = uuid.v1();
+
 	var stores = {
 		1: 'ica',
 		2: 'mathem',
@@ -37,7 +39,7 @@ app.get('/fetch', function(req, res) {
 				} else {
 					var dataPackage = json;
 				}
-				var sqlString = json2SQL.convertJsonToInsertSQL(dataPackage, currentStore,batch);
+				var sqlString = json2SQL.convertJsonToInsertSQL(dataPackage, currentStore, batch, timestamp);
 				var DBconnection = DB.dbConnection();
 
 				DBconnection.raw(sqlString)
