@@ -25,7 +25,7 @@ res.setHeader('Content-Type', 'application/json');
 			var dataset = {};
 			
 			var _date = new Date(data[0].date);
-			dataset.date = moment(_date).format('YYYY-MM-DD');
+			dataset.date = moment(_date).format('YYYY-MM-DD'); // plockar fram datum
 
 			var temp = _.where(data, { // function för att ta produkter från pro-kasse för att får namn på produkt och nummer senare
 					store: 'pro'
