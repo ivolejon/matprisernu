@@ -4,7 +4,7 @@ var DB = require('./../../lib/DB');
 
 app.get('/admin', function(req, res) {
 	var DBconnection = DB.dbConnection();
-	var sql ="SELECT TIMESTAMP, batch FROM products WHERE LENGTH (TRIM(batch)) > 0 ORDER BY TIMESTAMP DESC";
+	var sql ="SELECT TIMESTAMP, batch FROM products WHERE LENGTH (batch) > 0 GROUP BY batch, TIMESTAMP ORDER BY TIMESTAMP DESC";
 	DBconnection.raw(sql)
 		.then(function(resp) {
 			var data = resp.rows;
