@@ -50,16 +50,18 @@ app.get('/admin/clearErrors/:batch', function(req, res) {
 	
 	});
 
-app.get('/admin/view/:batch', function(req, res) {
+app.get('/admin/view/:batch/:style', function(req, res) {
+	res.setHeader('Content-Type', 'text/html');
 	var batch = req.params.batch;
+	var style = req.params.style;
 	console.log('Tittar på batch '+batch);
 	var DBconnection = DB.dbConnection();
-	var sql ="SELECT * FROM products WHERE batch ='"+batch+"'";
+	var sql ="SELECT * FROM products WHERE batch ='"+batch+"' ORDER BY store, number";
 	DBconnection.raw(sql)
 		.then(function(resp) {
 				DBconnection.destroy();
-			res.redirect('/admin')
-			
+			var dataset = resp.rows;
+			res.render('viewDatasetRaw', {objects : dataset});
 		})
 		.catch(function(err) {
 			console.error(err);

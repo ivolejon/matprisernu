@@ -1,0 +1,33 @@
+<h3>Hämtningar</h3>
+<table class="table table-bordered table-condensed table-hover">
+<thead>
+    <th>Id</th>
+    <th>Url</th>
+    <th>Number</th>
+    <th>Pris</th>
+    <th>Namn</th>
+    <th>timestamp</th>
+    <th>error</th>
+    <th>Store</th>
+    <th>date</th>
+    <th>batch</th>
+    <th>info</th>
+    <th>tags</th>
+</thead>
+{{#each objects}}
+    <tr>
+    <td>{{product_id}}</td>
+    <td><a href="{{url}}" target="_blank">Länk</a></td>
+    <td>{{number}}</td>
+    <td>{{product_price}}</td>
+    <td>{{product_name}}</td>
+    <td>{{timestamp}}</td>
+    <td>{{error}}</td>
+    <td>{{store}}</td>
+    <td>{{date}}</td>   
+    <td>{{batch}}</td>   
+    <td>{{information}}</td>   
+    <td>{{tags}}</td>   
+    </tr>
+    {{/each}}
+</table>
