@@ -1,7 +1,7 @@
 <h3>Hämtningar</h3>
 <ul>
 {{#each objects}}
-	<li><a href="/admin/view/{{batch}}/raw">{{timestamp}}</a><a href="/admin/deleteBatch/{{batch}}"> Radera</a> |  <a href="/admin/clearErrors/{{batch}}">Rensa dataset</a></li>
+	<li><h5>{{timestamp}}</h5><a class="button" href="/admin/view/{{batch}}/raw">Raw</a><a style="margin-left:5px" class="button" href="/admin/view/{{batch}}/clean">Clean</a></li>
 	{{/each}}
 </ul>
 

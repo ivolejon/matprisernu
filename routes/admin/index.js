@@ -1,6 +1,7 @@
 var express = require('express');
 var app = module.exports = express();
 var DB = require('./../../lib/DB');
+var formatData = require('./../../lib/formatJsonData');
 
 app.get('/admin', function(req, res) {
 	var DBconnection = DB.dbConnection();
@@ -56,12 +57,20 @@ app.get('/admin/view/:batch/:style', function(req, res) {
 	var style = req.params.style;
 	console.log('Tittar på batch '+batch);
 	var DBconnection = DB.dbConnection();
-	var sql ="SELECT * FROM products WHERE batch ='"+batch+"' ORDER BY store, number";
+	var sql ="SELECT *, product_price :: NUMERIC (8, 2) AS formated_product_price FROM products WHERE store = 'pro' OR batch = '"+batch+"' ORDER BY NUMBER, store";
 	DBconnection.raw(sql)
 		.then(function(resp) {
 				DBconnection.destroy();
-			var dataset = resp.rows;
-			res.render('viewDatasetRaw', {objects : dataset});
+			if(style === 'raw'){
+				var dataset = resp.rows;
+				res.render('viewDatasetRaw', {objects : dataset});
+			}
+			else if(style === 'clean'){
+				var dataset = formatData.format(resp.rows);
+				console.log(dataset);
+				res.render('viewDatasetClean', {objects : dataset});
+			}
+			
 		})
 		.catch(function(err) {
 			console.error(err);

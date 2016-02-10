@@ -1,4 +1,4 @@
-<h3>Hämtningar</h3>
+<h4>{{objects.0.batch}} - {{objects.0.timestamp}}</h4>
 <table class="table table-bordered table-condensed table-hover">
 <thead>
     <th>Id</th>
@@ -10,7 +10,6 @@
     <th>error</th>
     <th>Store</th>
     <th>date</th>
-    <th>batch</th>
     <th>info</th>
     <th>tags</th>
 </thead>
@@ -25,9 +24,9 @@
     <td>{{error}}</td>
     <td>{{store}}</td>
     <td>{{date}}</td>   
-    <td>{{batch}}</td>   
     <td>{{information}}</td>   
     <td>{{tags}}</td>   
     </tr>
     {{/each}}
 </table>
+<a href="/admin/deleteBatch/{{batch}}">Radera dataset</a>

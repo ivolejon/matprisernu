@@ -1,0 +1,23 @@
+<h4>{{objects.batch}} - {{objects.timestamp}}</h4>
+<table class="table table-bordered table-condensed table-hover">
+<thead>
+    <th>Nummer</th>
+    <th>Namn</th>
+    <th>Coop</th>
+    <th>Mathem</th>
+    <th>Matse</th>
+    <th>Ica</th>
+    <th>Pro</th>
+</thead>
+ {{#each objects.products}}
+    <tr>
+    <td>{{number}}</td>
+    <td>{{product_name}}</td>
+    <td>{{price_coop}}</td>
+    <td>{{price_mathem}}</td>
+    <td>{{price_matse}}</td>
+    <td>{{price_ica}}</td>
+    <td>{{price_pro}}</td>   
+    </tr>
+    {{/each}}
+</table>
