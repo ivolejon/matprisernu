@@ -1,7 +1,12 @@
 var express = require('express');
 var app = module.exports = express();
 var DB = require('./../../lib/DB');
+var store = require('./../../lib/scrapers');
 var formatData = require('./../../lib/formatJsonData');
+
+app.get('/test', function(req, res) {
+ res.send(store.getAllScrapers());
+})
 
 app.get('/admin', function(req, res) {
 	var DBconnection = DB.dbConnection();

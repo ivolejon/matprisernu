@@ -12,6 +12,14 @@ var autoprefixer = require('gulp-autoprefixer');
 var url_adujuster = require('gulp-css-url-adjuster')
 var replace = require('gulp-replace-task');
 
+gulp.task('vue',function(){
+    return gulp.src(['./public/vendor/vue/dist/vue.min.js', './public/js/matpriser.js'])
+    .pipe(concat('matpriser.js', {newLine: ';'}))
+    .pipe(minifyJs())
+    .pipe(gulp.dest('./public/dist/js/'));
+});
+
+
 gulp.task('minify-js', function() {
   return gulp.src(['./public/js/home.js'])
     .pipe(concat('site.js'))
@@ -55,7 +63,7 @@ gulp.task('fix-urls', function() {
 });
 
 
-gulp.task('default', ['minify-css','copy-images','minify-js'], function() {
+gulp.task('default', ['vue'], function() {
 
 });
 

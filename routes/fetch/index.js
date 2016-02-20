@@ -1,65 +1,24 @@
 var express = require('express');
-var connections = require('./../../lib/connections');
 var DB = require('./../../lib/DB');
-var json2SQL = require('./../../lib/json2Sql');
-var request = require('request');
-var async = require('async');
-var uuid = require('uuid');
-var moment = require('moment');
+var cloudScrape = require('./../../lib/cloudscrape');
+
 var app = module.exports = express();
 
 app.get('/fetch', function(req, res) {
+	
+	cloudScrape.fetch(function(sql) {
+		var DBconnection = DB.dbConnection();
+		DBconnection.raw(sql)
+			.then(function(resp) {
+				console.log('Data sparad i databasen');
+				DBconnection.destroy();
+				res.redirect('/admin');
+			})
+			.catch(function(err) {
+				console.error(err);
+			});
+	});
 
-	var now = moment()
-	var timestamp = now.format('YYYY-MM-DD HH:mm:ss Z')
-	var batch = uuid.v1();
 
-	var stores = {
-		1: 'ica',
-		2: 'mathem',
-		3: 'matse',
-		4: 'coop',
-		5: 'icaEko',
-		6: 'mathemEko',
-		7: 'matseEko',
-		8: 'coopEko'
-	};
-	async.forEachOfSeries(stores, function(value, key, callback) {
 
-		currentStore = value;
-
-		console.log('Hämtar från ' + currentStore);
-
-		var cloudScrapeRequest = connections.switchStores(currentStore);
-
-		request.get(cloudScrapeRequest, function(error, response, json) {
-			if (!error && response.statusCode == 200) {
-				if (typeof json === "string") {
-					var dataPackage = JSON.parse(json);
-				} else {
-					var dataPackage = json;
-				}
-				var sqlString = json2SQL.convertJsonToInsertSQL(dataPackage, currentStore, batch, timestamp);
-				var DBconnection = DB.dbConnection();
-
-				DBconnection.raw(sqlString)
-					.then(function(resp) {
-						console.log('Hämtat klart från ' + currentStore)
-						DBconnection.destroy();
-						callback();
-					})
-					.catch(function(err) {
-						console.error(err);
-					});
-
-			} else {
-				console.log('no data');
-				res.end();
-			}
-		});
-
-	}, function() {
-		console.log('Hämatat från alla affärer');
-		res.redirect('/admin')
-	}); //forEachSeries
 });

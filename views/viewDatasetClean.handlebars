@@ -9,7 +9,7 @@
     <th>Ica</th>
     <th>Pro</th>
 </thead>
- {{#each objects.products}}
+{{#each objects.products}}
     <tr>
     <td>{{number}}</td>
     <td>{{product_name}}</td>
@@ -20,4 +20,34 @@
     <td>{{price_pro}}</td>   
     </tr>
     {{/each}}
+       <tr>
+        <td></td>
+        <td>Totalt</td>
+        <td>{{objects.totals.totalCoop}}</td>
+        <td>{{objects.totals.totalMathem}}</td>
+        <td>{{objects.totals.totalMatse}}</td>
+        <td>{{objects.totals.totalIca}}</td>
+        <td>{{objects.totals.totalPro}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Frakt</td>
+        <td>{{objects.shipping.coop}}</td>
+        <td>{{objects.shipping.mathem}}</td>
+        <td>{{objects.shipping.matse}}</td>
+        <td>{{objects.shipping.ica}}</td>
+        <td>{{objects.shipping.pro}}</td>
+    </tr>
+     <tr>
+        <td></td>
+        <td>Totalt inkl frakt</td>
+        <td>{{objects.totals.totalCoopShipping}}</td>
+        <td>{{objects.totals.totalMathemShipping}}</td>
+        <td>{{objects.totals.totalMatseShipping}}</td>
+        <td>{{objects.totals.totalIcaShipping}}</td>
+        <td>{{objects.totals.totalProShipping}}</td>
+    </tr>
+    
 </table>
+
+
