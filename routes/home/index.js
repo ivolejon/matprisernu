@@ -15,7 +15,8 @@ app.get('/latest', function(req, res) {
 	// 	return;
 	// }
 	var DBconnection = DB.dbConnection();
-	var sql = "SELECT * FROM products WHERE ( error = '' AND tags = 'kasse' AND TIMESTAMP = ( SELECT TIMESTAMP FROM products WHERE store != 'pro' ORDER BY TIMESTAMP DESC LIMIT 1 )) OR store = 'pro' ORDER BY NUMBER, store";
+	//var sql = "SELECT * FROM products WHERE ( error = '' AND tags = 'kasse' AND TIMESTAMP = ( SELECT TIMESTAMP FROM products WHERE store != 'pro' ORDER BY TIMESTAMP DESC LIMIT 1 )) OR store = 'pro' ORDER BY NUMBER, store";
+	var sql = "SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'coop' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS coop UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'mathem' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS mathem UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'matse' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS matse UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'ica' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS ica UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'pro' ORDER BY NUMBER, TIMESTAMP DESC ) AS pro ORDER BY NUMBER, TIMESTAMP DESC";
 	DBconnection.raw(sql)
 		.then(function(resp) {
 			var data = resp.rows;

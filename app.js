@@ -10,8 +10,10 @@ var app  = express();
 
 app.use(compression());
 app.use(morgan('tiny'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, '/public')));
+//app.use('/public', express.static('public'));
+//app.use('/assets', express.static(path.join(__dirname, 'assets')));
+//app.use('/public', express.static(__dirname + 'public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
