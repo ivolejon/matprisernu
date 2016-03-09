@@ -62,7 +62,8 @@ app.get('/admin/view/:batch/:style', function(req, res) {
 	var style = req.params.style;
 	console.log('Tittar på batch '+batch);
 	var DBconnection = DB.dbConnection();
-	var sql ="SELECT *, product_price :: NUMERIC (8, 2) AS formated_product_price FROM products WHERE store = 'pro' OR batch = '"+batch+"' ORDER BY NUMBER, store";
+	var sql = "SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'coop' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS coop UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'mathem' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS mathem UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'matse' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS matse UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'ica' AND error = '' ORDER BY NUMBER, TIMESTAMP DESC ) AS ica UNION SELECT * FROM ( SELECT DISTINCT ON (NUMBER) * FROM products WHERE store = 'pro' ORDER BY NUMBER, TIMESTAMP DESC ) AS pro ORDER BY NUMBER, TIMESTAMP DESC";
+	//var sql ="SELECT *, product_price :: NUMERIC (8, 2) AS formated_product_price FROM products WHERE store = 'pro' OR batch = '"+batch+"' ORDER BY NUMBER, store";
 	DBconnection.raw(sql)
 		.then(function(resp) {
 				DBconnection.destroy();
