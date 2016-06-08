@@ -1,4 +1,4 @@
-var express = require('express');
+  var express = require('express');
 var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 //app.use('/public', express.static('public'));
 //app.use('/assets', express.static(path.join(__dirname, 'assets')));
 //app.use('/public', express.static(__dirname + 'public'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -39,11 +40,13 @@ app.set('view engine', 'handlebars');
 var home = require('./routes/home');
 var fetch = require('./routes/fetch');
 var admin = require('./routes/admin');
+var proxy = require('./routes/proxy');
 
 
 app.use(fetch);
 app.use(home);
 app.use(admin);
+app.use(proxy);
 
 
 app.use(function(err, req, res, next) {
