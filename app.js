@@ -55,6 +55,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
+server = app.listen(process.env.PORT || 3000, function(){
   console.log("Matpriser.nu server körs på port %d i %s läge", this.address().port, app.settings.env);
 });
+server.timeout = 120000;
