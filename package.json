@@ -14,6 +14,7 @@
     "body-parser": "^1.14.1",
     "capitalize-word": "^0.1.1",
     "compression": "^1.6.0",
+    "connect-timeout": "^1.7.0",
     "csvtojson": "^0.4.8",
     "encoding": "^0.1.12",
     "event-sender": "^0.1.3",

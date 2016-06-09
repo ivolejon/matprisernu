@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var compression = require('compression');
 var path = require('path');
 var bodyParser = require('body-parser');
+var timeout = require('connect-timeout');
 
 
 var app  = express();
@@ -54,8 +55,13 @@ app.use(function(err, req, res, next) {
   res.status(500).send('Error');
 });
 
+app.use(timeout('120s'));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next){
+  if (!req.timedout) next();
+}
 
 server = app.listen(process.env.PORT || 3000, function(){
   console.log("Matpriser.nu server körs på port %d i %s läge", this.address().port, app.settings.env);
 });
-server.timeout = 120000;

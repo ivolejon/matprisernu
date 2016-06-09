@@ -7,6 +7,7 @@ var Converter = require('csvtojson').Converter;
 var app = module.exports = express();
 
 app.get('/proxy/:run', function(req, res) {
+	console.log('Startar hämtning från Dexi.io')
 	var run = req.params.run;
 	var options = {
 		host: 'api.dexi.io',
