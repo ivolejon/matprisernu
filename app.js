@@ -42,17 +42,19 @@ var home = require('./routes/home');
 var fetch = require('./routes/fetch');
 var admin = require('./routes/admin');
 var proxy = require('./routes/proxy');
+var postal = require('./routes/postal');
 
 
 app.use(fetch);
 app.use(home);
 app.use(admin);
 app.use(proxy);
+app.use(postal);
 
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Error');
+  res.status(500).send(err);
 });
 
 app.use(timeout('120s'));
