@@ -100,6 +100,33 @@ app.get('/postalcode/coop/:code', function(req, res) {
 
 });
 
+app.get('/postalcode/willys/:code', function(req, res) {
+	var postalCode = req.params.code;
+	var options = {
+		method: 'GET',
+		url: 'https://handla.willys.se/axfood/rest/slot/homeDelivery/availability/' + postalCode,
+		headers: {
+			'postman-token': '3ed39447-6930-ced5-16ed-282e34d15bed',
+			'cache-control': 'no-cache'
+		}
+	};
+
+	request(options, function(error, response, body) {
+		var patt = new RegExp(/\d+/);
+		var match = patt.test(body);
+		console.log(match);
+		if (match) {
+			res.json('{status:true}');
+		} else if (!match) {
+			res.json('{status:false}');
+		} else {
+			res.json('{status:error}');
+		}
+	});
+
+
+});
+
 app.get('/postalcode/ica/:code', function(req, res) {
 	var postalCode = req.params.code;
 	var Horseman = require('node-horseman');
