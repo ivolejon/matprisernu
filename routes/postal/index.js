@@ -103,7 +103,9 @@ app.get('/postalcode/coop/:code', function(req, res) {
 app.get('/postalcode/ica/:code', function(req, res) {
 	var postalCode = req.params.code;
 	var Horseman = require('node-horseman');
-	var horseman = new Horseman({loadImages:false});
+	var horseman = new Horseman({
+		loadImages: false
+	});
 
 	horseman
 		.userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
@@ -112,14 +114,14 @@ app.get('/postalcode/ica/:code', function(req, res) {
 
 			$(document).ajaxSuccess(function(event, xhr, settings) {
 				request = JSON.stringify(settings.data);
-				if(request.search('&q=&') === -1)
-				console.log(JSON.stringify(settings.data)+xhr.responseText)
+				if (request.search('&q=&') === -1)
+					console.log(JSON.stringify(settings.data) + xhr.responseText)
 			});
 
-			$(document).ajaxSend(function(event, request, settings ) {
+			$(document).ajaxSend(function(event, request, settings) {
 				var temp = settings.data
 				pc = $('#searchInput').val();
-				settings.data = temp.replace('q=','q='+pc);
+				settings.data = temp.replace('q=', 'q=' + pc);
 			});
 		})
 		.click('#rd-homedelivery')
@@ -129,11 +131,17 @@ app.get('/postalcode/ica/:code', function(req, res) {
 		.close();
 	horseman
 		.on('consoleMessage', function(msg) {
-			console.log(msg);
-			
-			res.end(msg)
+			var resultTrue = msg.search('Butiker som erbjuder hemleverans');
+			var resultFalse = msg.search('Vi hittade tyvärr inga');
+			if (resultTrue > -1) {
+				res.json('{status:true}');
+			} else if (resultFalse > -1) {
+				res.json('{status:false}');
+			} else {
+				res.json('{status:error}');
+			}
 		})
-			horseman
+	horseman
 		.on('error', function(msg) {
 			console.log(msg);
 		})
