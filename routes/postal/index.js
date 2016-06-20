@@ -127,10 +127,10 @@ app.get('/postalcode/ica/:code', function(req, res) {
 		.click('#rd-homedelivery')
 		.value('#searchInput', postalCode)
 		.click('form.store-search-form.home-delivery-ui button')
-		.screenshot('/Users/ivolejon/screenshots/ivo_4.png')
-		.close();
+		//.close();
 	horseman
 		.on('consoleMessage', function(msg) {
+			horseman.close()
 			var resultTrue = msg.search('Butiker som erbjuder hemleverans');
 			var resultFalse = msg.search('Vi hittade tyvärr inga');
 			if (resultTrue > -1) {
