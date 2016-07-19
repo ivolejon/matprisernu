@@ -21,11 +21,11 @@ app.get('/postalcode/matse/:code', function(req, res) {
 	request(options, function(error, response, data) {
 		data = JSON.parse(data);
 		if (data.status === 'FAILED') {
-			res.json('{status:false}');
+			res.json('{"status":false}');
 		} else if (data.status === 'SUCCESS') {
-			res.json('{status:true}');
+			res.json('{"status":true}');
 		} else {
-			res.json('{status:error}');
+			res.json('{"status":error}');
 
 		}
 	});
@@ -54,11 +54,11 @@ app.get('/postalcode/mathem/:code', function(req, res) {
 		console.log(resultTrue);
 		console.log(resultFalse);
 		if (resultTrue > -1) {
-			res.json('{status:true}');
+			res.json('{"status":true}');
 		} else if (resultFalse > -1) {
-			res.json('{status:false}');
+			res.json('{"status":false}');
 		} else {
-			res.json('{status:error}');
+			res.json('{"status":error}');
 		}
 	});
 
@@ -90,11 +90,11 @@ app.get('/postalcode/coop/:code', function(req, res) {
 		var resultTrue = body.search('Du kan få Coop Matkasse och hela butikssortimentet levererat hem till dörren');
 		var resultFalse = body.search('Ingen butik i närheten');
 		if (resultTrue > -1) {
-			res.json('{status:true}');
+			res.json('{"status":true}');
 		} else if (resultFalse > -1) {
-			res.json('{status:false}');
+			res.json('{"status":false}');
 		} else {
-			res.json('{status:error}');
+			res.json('{"status":error}');
 		}
 	});
 
@@ -116,11 +116,11 @@ app.get('/postalcode/willys/:code', function(req, res) {
 		var match = patt.test(body);
 		console.log(match);
 		if (match) {
-			res.json('{status:true}');
+			res.json('{"status":true}');
 		} else if (!match) {
-			res.json('{status:false}');
+			res.json('{"status":false}');
 		} else {
-			res.json('{status:error}');
+			res.json('{"status":error}');
 		}
 	});
 
@@ -161,11 +161,11 @@ app.get('/postalcode/ica/:code', function(req, res) {
 			var resultTrue = msg.search('Butiker som erbjuder hemleverans');
 			var resultFalse = msg.search('Vi hittade tyvärr inga');
 			if (resultTrue > -1) {
-				res.json('{status:true}');
+				res.json('{"status":true}');
 			} else if (resultFalse > -1) {
-				res.json('{status:false}');
+				res.json('{"status":false}');
 			} else {
-				res.json('{status:error}');
+				res.json('{"status":error}');
 			}
 		})
 	horseman
