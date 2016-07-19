@@ -14,6 +14,8 @@ var app = new Vue({
       var self = this;
       jQuery.getJSON('http://data.matpriser.nu/latest', {}, function(json, textStatus) {
         self.dataset = json;
+        css_class = '.store_' + self.dataset.cheapestStore;
+        jQuery(css_class).addClass('billigast');
       });
 
     }
