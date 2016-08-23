@@ -25,7 +25,7 @@ app.get('/postalcode/matse/:code', function(req, res) {
 		} else if (data.status === 'SUCCESS') {
 			res.json('{"status":true}');
 		} else {
-			res.json('{"status":error}');
+			res.json('{"status":"error"}');
 
 		}
 	});
@@ -58,7 +58,7 @@ app.get('/postalcode/mathem/:code', function(req, res) {
 		} else if (resultFalse > -1) {
 			res.json('{"status":false}');
 		} else {
-			res.json('{"status":error}');
+			res.json('{"status":"error"}');
 		}
 	});
 
@@ -94,7 +94,7 @@ app.get('/postalcode/coop/:code', function(req, res) {
 		} else if (resultFalse > -1) {
 			res.json('{"status":false}');
 		} else {
-			res.json('{"status":error}');
+			res.json('{"status":"error"}');
 		}
 	});
 
@@ -120,7 +120,7 @@ app.get('/postalcode/willys/:code', function(req, res) {
 		} else if (!match) {
 			res.json('{"status":false}');
 		} else {
-			res.json('{"status":error}');
+			res.json('{"status":"error"}');
 		}
 	});
 
@@ -165,7 +165,7 @@ app.get('/postalcode/ica/:code', function(req, res) {
 			} else if (resultFalse > -1) {
 				res.json('{"status":false}');
 			} else {
-				res.json('{"status":error}');
+				res.json('{"status":"error"}');
 			}
 		})
 	horseman
