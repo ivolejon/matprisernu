@@ -173,3 +173,33 @@ app.get('/postalcode/ica/:code', function(req, res) {
 			console.log(msg);
 		})
 });
+
+app.get('/postalcode/citygross/:code', function(req, res) {
+	var postalCode = req.params.code;
+	var Horseman = require('node-horseman');
+	var horseman = new Horseman({
+		loadImages: false
+	});
+
+	horseman
+		.userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+		.open('https://www.citygross.se/kundservice-och-kontakt/sahar-fungerar-det/')
+	
+		.type('input#PostalCode', postalCode)
+		.click('.text-wrapper')
+		.click('button')
+		.wait(300)
+		.text('#postal-code .delivery span')
+		.then(function(text){
+			var resultTrue = text.search('Ja, vi levererar till');
+			var resultFalse = text.search('Vi levererar inte än');
+			if (resultTrue > -1) {
+				res.json('{"status":true}');
+			} else if (resultFalse > -1) {
+				res.json('{"status":false}');
+			} else {
+				res.json('{"status":"error"}');
+			}
+		})
+	
+});
