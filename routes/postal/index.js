@@ -154,7 +154,6 @@ app.get('/postalcode/ica/:code', function(req, res) {
 		.click('#rd-homedelivery')
 		.value('#searchInput', postalCode)
 		.click('form.store-search-form.home-delivery-ui button')
-		//.close();
 	horseman
 		.on('consoleMessage', function(msg) {
 			horseman.close()
@@ -168,6 +167,7 @@ app.get('/postalcode/ica/:code', function(req, res) {
 				res.json('{"status":"error"}');
 			}
 		})
+		
 	horseman
 		.on('error', function(msg) {
 			console.log(msg);
@@ -201,5 +201,7 @@ app.get('/postalcode/citygross/:code', function(req, res) {
 				res.json('{"status":"error"}');
 			}
 		})
+		.close();
+
 	
 });
