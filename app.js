@@ -43,6 +43,7 @@ var fetch = require('./routes/fetch');
 var admin = require('./routes/admin');
 var proxy = require('./routes/proxy');
 var postal = require('./routes/postal');
+var postal_matkassar = require('./routes/postal_matkassar');
 
 
 app.use(fetch);
@@ -50,6 +51,7 @@ app.use(home);
 app.use(admin);
 app.use(proxy);
 app.use(postal);
+app.use(postal_matkassar);
 
 
 app.use(function(err, req, res, next) {
