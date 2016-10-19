@@ -3,37 +3,34 @@ var request = require("request");
 
 var app = module.exports = express();
 
-app.get('/postalcode/matse/:code', function(req, res) {
+app.get('/postalcode/hemkop/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var options = {
-		method: 'POST',
-		url: 'https://www.mat.se/g/admin/postalCode/updatePostalCode',
-		headers: {
-			'postman-token': '868a4e1b-08b1-1027-6f14-5ba8f3e57f8a',
-			'cache-control': 'no-cache',
-			'content-type': 'multipart/form-data; boundary=---011000010111000001101001'
-		},
-		formData: {
-			zipCode: postalCode
+		method: 'GET',
+		url: 'https://handla.hemkop.se/axfood/rest/slot/homeDelivery/availability/'+postalCode,
+		headers:
+		{
+			'postman-token': '0466b962-063d-06d8-19b9-acddb174d240',
+			'cache-control': 'no-cache'
 		}
 	};
 
-	request(options, function(error, response, data) {
-		data = JSON.parse(data);
-		if (data.status === 'FAILED') {
-			res.json('{"status":false}');
-		} else if (data.status === 'SUCCESS') {
+	request(options, function (error, response, data) {
+		console.log(data.length)
+		if (data.length > 2) {
 			res.json('{"status":true}');
+		} else if (data.length < 3) {
+			res.json('{"status":false}');
 		} else {
 			res.json('{"status":"error"}');
 
 		}
 	});
-	
+
 
 });
 
-app.get('/postalcode/mathem/:code', function(req, res) {
+app.get('/postalcode/mathem/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var options = {
 		method: 'GET',
@@ -48,7 +45,7 @@ app.get('/postalcode/mathem/:code', function(req, res) {
 		}
 	};
 
-	request(options, function(error, response, body) {
+	request(options, function (error, response, body) {
 		var resultTrue = body.search('Vi kan leverera till dig');
 		var resultFalse = body.search('Prova ett annat postnummer');
 		console.log(resultTrue);
@@ -66,7 +63,7 @@ app.get('/postalcode/mathem/:code', function(req, res) {
 });
 
 
-app.get('/postalcode/coop/:code', function(req, res) {
+app.get('/postalcode/coop/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var options = {
 		method: 'POST',
@@ -86,7 +83,7 @@ app.get('/postalcode/coop/:code', function(req, res) {
 		body: '{"postalCode":"' + postalCode + '"}'
 	};
 
-	request(options, function(error, response, body) {
+	request(options, function (error, response, body) {
 		var resultTrue = body.search('Du kan få Coop Matkasse och hela butikssortimentet levererat hem till dörren');
 		var resultFalse = body.search('Ingen butik i närheten');
 		if (resultTrue > -1) {
@@ -100,7 +97,7 @@ app.get('/postalcode/coop/:code', function(req, res) {
 
 });
 
-app.get('/postalcode/willys/:code', function(req, res) {
+app.get('/postalcode/willys/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var options = {
 		method: 'GET',
@@ -111,7 +108,7 @@ app.get('/postalcode/willys/:code', function(req, res) {
 		}
 	};
 
-	request(options, function(error, response, body) {
+	request(options, function (error, response, body) {
 		var patt = new RegExp(/\d+/);
 		var match = patt.test(body);
 		console.log(match);
@@ -127,7 +124,7 @@ app.get('/postalcode/willys/:code', function(req, res) {
 
 });
 
-app.get('/postalcode/ica/:code', function(req, res) {
+app.get('/postalcode/ica/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var Horseman = require('node-horseman');
 	var horseman = new Horseman({
@@ -137,15 +134,15 @@ app.get('/postalcode/ica/:code', function(req, res) {
 	horseman
 		.userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
 		.open('http://www.ica.se/handla/valj-butik/')
-		.evaluate(function() {
+		.evaluate(function () {
 
-			$(document).ajaxSuccess(function(event, xhr, settings) {
+			$(document).ajaxSuccess(function (event, xhr, settings) {
 				request = JSON.stringify(settings.data);
 				if (request.search('&q=&') === -1)
 					console.log(JSON.stringify(settings.data) + xhr.responseText)
 			});
 
-			$(document).ajaxSend(function(event, request, settings) {
+			$(document).ajaxSend(function (event, request, settings) {
 				var temp = settings.data
 				pc = $('#searchInput').val();
 				settings.data = temp.replace('q=', 'q=' + pc);
@@ -155,7 +152,7 @@ app.get('/postalcode/ica/:code', function(req, res) {
 		.value('#searchInput', postalCode)
 		.click('form.store-search-form.home-delivery-ui button')
 	horseman
-		.on('consoleMessage', function(msg) {
+		.on('consoleMessage', function (msg) {
 			horseman.close()
 			var resultTrue = msg.search('Butiker som erbjuder hemleverans');
 			var resultFalse = msg.search('Vi hittade tyvärr inga');
@@ -167,14 +164,14 @@ app.get('/postalcode/ica/:code', function(req, res) {
 				res.json('{"status":"error"}');
 			}
 		})
-		
+
 	horseman
-		.on('error', function(msg) {
+		.on('error', function (msg) {
 			console.log(msg);
 		})
 });
 
-app.get('/postalcode/citygross/:code', function(req, res) {
+app.get('/postalcode/citygross/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var Horseman = require('node-horseman');
 	var horseman = new Horseman({
@@ -184,13 +181,13 @@ app.get('/postalcode/citygross/:code', function(req, res) {
 	horseman
 		.userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
 		.open('https://www.citygross.se/kundservice-och-kontakt/sahar-fungerar-det/')
-	
+
 		.type('input#PostalCode', postalCode)
 		.click('.text-wrapper')
 		.click('button')
 		.wait(300)
 		.text('#postal-code .delivery span')
-		.then(function(text){
+		.then(function (text) {
 			var resultTrue = text.search('Ja, vi levererar till');
 			var resultFalse = text.search('Vi levererar inte än');
 			if (resultTrue > -1) {
@@ -203,5 +200,5 @@ app.get('/postalcode/citygross/:code', function(req, res) {
 		})
 		.close();
 
-	
+
 });
