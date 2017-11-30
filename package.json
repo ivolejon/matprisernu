@@ -4,6 +4,10 @@
   "description": "App för att hantera matpriser",
   "main": "app.js",
   "private": true,
+  "engines": {
+    "node": "6.10.3",
+    "npm": "3.10.10"
+  },
   "scripts": {
     "start": "node app.js"
   },
