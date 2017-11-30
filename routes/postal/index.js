@@ -179,12 +179,14 @@ app.get('/postalcode/ica/:code', function (req, res) {
 		if(!body.validZipCode){
 			res.json('{"status":"error"}');
 		}
-		if(body.forHomeDelivery.length > 0){
-			res.json('{"status":true}');
-		}
 		else{
-			res.json('{"status":false}');
-			
+			if(body.forHomeDelivery.length > 0){
+				res.json('{"status":true}');
+			}
+			else{
+				res.json('{"status":false}');
+				
+			}
 		}
 	});
 
