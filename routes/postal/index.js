@@ -30,6 +30,36 @@ app.get('/postalcode/hemkop/:code', function (req, res) {
 
 });
 
+app.get('/postalcode/matse/:code', function (req, res) {
+	var postalCode = req.params.code;
+	var options = {
+		method: 'GET',
+		url: 'https://www.mat.se/g/register/isZipCodeDeliverable',
+		qs: {
+			'address.zipCode': postalCode
+		},
+		headers: {
+			'postman-token': '22a3cdef-ad49-d670-4d2f-1fce5151a6c2',
+			'cache-control': 'no-cache'
+		}
+	};
+	request(options, function (error, response, body) {
+		var resultTrue = body.search('true');
+		var resultFalse = body.search('false');
+		console.log(resultTrue);
+		console.log(resultFalse);
+		if (resultTrue > -1) {
+			res.json('{"status":true}');
+		} else if (resultFalse > -1) {
+			res.json('{"status":false}');
+		} else {
+			res.json('{"status":"error"}');
+		}
+	});
+
+
+});
+
 app.get('/postalcode/mathem/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var options = {
@@ -123,8 +153,44 @@ app.get('/postalcode/willys/:code', function (req, res) {
 
 
 });
-
 app.get('/postalcode/ica/:code', function (req, res) {
+	var postalCode = req.params.code;
+	var options = {
+		method: 'GET',
+		url: 'https://handla.ica.se/api/store/v1',
+		qs: {
+			'zip': postalCode,
+			'customertype':'B2C'
+		},
+		headers : {
+			'content-type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+			'accept': "*/*",
+			'accept-encoding': "gzip, deflate, br",
+			'accept-language': "sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7",
+			'origin': "https://www.ica.se",
+			'referer': "https://www.ica.se/handla/?io_internal_content=meny-handlagalleriet&io_internal_campaign=online",
+			'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36",
+			'cache-control': "no-cache",
+			'postman-token': "aeea9ae7-ab15-11d5-3895-b064ab179ce8"
+			}
+	};
+	request(options, function (error, response, body) {
+		body = JSON.parse(body);
+		if(!body.validZipCode){
+			res.json('{"status":"error"}');
+		}
+		if(body.forHomeDelivery.length > 0){
+			res.json('{"status":true}');
+		}
+		else{
+			res.json('{"status":false}');
+			
+		}
+	});
+
+
+});
+/*app.get('/postalcode/ica/:code', function (req, res) {
 	var postalCode = req.params.code;
 	var Horseman = require('node-horseman');
 	var horseman = new Horseman({
@@ -169,7 +235,7 @@ app.get('/postalcode/ica/:code', function (req, res) {
 		.on('error', function (msg) {
 			console.log(msg);
 		})
-});
+});*/
 
 app.get('/postalcode/citygross/:code', function (req, res) {
 	var postalCode = req.params.code;
